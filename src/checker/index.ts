@@ -1,6 +1,6 @@
-import { strictFormatCheck } from './strict-format-check';
-import { fileNamingPattern } from './file-naming-pattern';
-import { fileSizeLimit } from './file-size-limit';
+import { strictFormatCheck } from './strictFormatCheck';
+import { fileNamingPattern } from './fileNamingPattern';
+import { fileSizeLimit } from './fileSizeLimit';
 
 type Checker = {
 	[key: string]: () => boolean;
