@@ -1,0 +1,10 @@
+{
+	"workbench.editorAssociations": {
+		"**/__test__/**/*.png": "hexEditor.hexedit",
+		"**/__test__/**/*.jpeg": "hexEditor.hexedit",
+		"**/__test__/**/*.jpg": "hexEditor.hexedit",
+		"**/__test__/**/*.webp": "hexEditor.hexedit",
+		"**/__test__/**/*.gif": "hexEditor.hexedit",
+		"**/__test__/**/*.avif": "hexEditor.hexedit"
+	}
+}
