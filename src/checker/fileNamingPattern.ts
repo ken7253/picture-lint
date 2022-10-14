@@ -22,7 +22,5 @@ export const fileNamingPattern = (filePath: string, pattern: string) => {
 	const { name } = path.parse(filePath);
 	const result = testPattern.test(name);
 
-	console.log(name, testPattern, result);
-
 	return result;
 };
