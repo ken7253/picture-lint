@@ -5,6 +5,8 @@ import fs from 'node:fs/promises';
  *
  * @param filePath Path of the image to be checked.
  *
+ * ex) `root/foo/check-image.jpg`
+ *
  * @param limit Maximum size [byte]
  *
  * @returns if "over-size" return `false`.
