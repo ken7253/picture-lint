@@ -1,13 +1,9 @@
 import { strictFormatCheck } from './strictFormatCheck';
-import { fileNamingPattern } from './fileNamingPattern';
-import { fileSizeLimit } from './fileSizeLimit';
+import { fileNamingPattern } from './fileNamingPattern/';
+import { fileSizeLimit } from './fileSizeLimit/';
 
-type Checker = {
-	[key: string]: () => boolean;
-};
-
-export const checker: Checker = {
-	// strictFormatCheck,
-	// fileNamingPattern,
-	// fileSizeLimit,
+export const checker = {
+	strictFormatCheck,
+	fileNamingPattern,
+	fileSizeLimit,
 };

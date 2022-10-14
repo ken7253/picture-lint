@@ -1,6 +1,6 @@
-import { loader } from './loader';
-import { defaultConfig, type Configuration } from './default';
-import { generate } from './generate';
+import { loader } from './loader/';
+import { defaultConfig, type Configuration } from './default/';
+import { generate } from './generate/';
 
 export type { Configuration };
 

@@ -1,3 +1,3 @@
 export const strictFormatCheck = () => {
-	//
+	// strictFormatCheck
 };

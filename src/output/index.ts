@@ -1,4 +1,4 @@
-import { resultItem, type LintResult } from './result';
+import { resultItem, type LintResult } from './result/';
 
 export type { LintResult };
 
