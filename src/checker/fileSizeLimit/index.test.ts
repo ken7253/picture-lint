@@ -13,7 +13,7 @@ const referenceImage = path.join(
 );
 
 describe('[checker: file-size-limit]', () => {
-	test('over size', async () => {
+	test('over size', async (): Promise<boolean> => {
 		const { size } = await fs.stat(referenceImage);
 		const result = await fileSizeLimit(referenceImage, size - 1);
 		expect(result).toBe(false);
@@ -21,10 +21,18 @@ describe('[checker: file-size-limit]', () => {
 		return result;
 	});
 
-	test('safe size', async () => {
+	test('safe size', async (): Promise<boolean> => {
 		const { size } = await fs.stat(referenceImage);
 		const result = await fileSizeLimit(referenceImage, size + 1);
 		expect(result).toBe(true);
+
+		return result;
+	});
+
+	test('equal size', async (): Promise<boolean> => {
+		const { size } = await fs.stat(referenceImage);
+		const result = await fileSizeLimit(referenceImage, size);
+		expect(result).toBe(false);
 
 		return result;
 	});
