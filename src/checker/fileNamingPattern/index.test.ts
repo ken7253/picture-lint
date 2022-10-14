@@ -1,4 +1,4 @@
-import { fileNamingPattern } from '../../checker/fileNamingPattern';
+import { fileNamingPattern } from '../fileNamingPattern/';
 import { describe, expect, test } from '@jest/globals';
 
 describe('[checker: file-name-pattern]', () => {
