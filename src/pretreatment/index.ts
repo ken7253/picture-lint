@@ -2,7 +2,7 @@ import type { ParsedPath } from 'path';
 import { create } from './create';
 
 export interface PretreatmentItem {
-	path: ParsedPath;
+	parsedPath: ParsedPath;
 	header: Uint8Array;
 	size: number;
 }
