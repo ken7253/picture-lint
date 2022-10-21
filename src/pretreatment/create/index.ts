@@ -2,27 +2,28 @@ import path from 'node:path';
 import fs from 'node:fs/promises';
 import { Pretreatment, PretreatmentItem } from '..';
 
-export const create = async (
-	targetImagePathList: string[],
-): Promise<Pretreatment> => {
-	// pretreatment.create
-	const getPretreatment = async (
-		targetImagePath: string,
-	): Promise<PretreatmentItem> => {
+/**
+ * Create pretreatment object.
+ *
+ * @param targetImagePathList Full path of the file to be checked.
+ *
+ * @returns
+ */
+export const create = async (targetImagePathList: string[]): Promise<Pretreatment> => {
+	const getFileOverview = async (targetImagePath: string): Promise<PretreatmentItem> => {
 		const parsedPath = path.parse(targetImagePath);
 		const { size } = await fs.stat(targetImagePath);
-		const fileBinary = await fs.readFile(targetImagePath);
-		const header = new Uint8Array(fileBinary).slice(0, 16);
+		const binary = await fs.readFile(targetImagePath);
+		const header = new Uint8Array(binary).slice(0, 16);
 
 		return {
-			path: parsedPath,
+			parsedPath,
 			size,
 			header,
 		};
 	};
+	const maybePretreatment = targetImagePathList.map((v) => getFileOverview(v));
+	const pretreatment = Promise.all(maybePretreatment);
 
-	const result = Promise.all(
-		targetImagePathList.map((v) => getPretreatment(v)),
-	);
-	return result;
+	return pretreatment;
 };
