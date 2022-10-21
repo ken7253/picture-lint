@@ -2,9 +2,7 @@ type ExtType = 'jpg' | 'png';
 
 export const strictFormatCheck = (meta: Uint8Array, is: ExtType) => {
 	if (meta.length < 16) {
-		throw new Error(
-			'Insufficient data size.\n Array length must be at least 16.',
-		);
+		throw new Error('Insufficient data size.\n Array length must be at least 16.');
 	}
 
 	const isPNG = () => {

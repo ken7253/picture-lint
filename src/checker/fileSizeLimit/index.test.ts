@@ -4,13 +4,7 @@ import process from 'node:process';
 import { fileSizeLimit } from './';
 import { describe } from '@jest/globals';
 
-const referenceImage = path.join(
-	process.cwd(),
-	'src',
-	'__test__',
-	'format-tester',
-	'jpg.jpg',
-);
+const referenceImage = path.join(process.cwd(), 'src', '__test__', 'format-tester', 'jpg.jpg');
 
 describe('[checker: file-size-limit]', () => {
 	test('over size', async (): Promise<boolean> => {

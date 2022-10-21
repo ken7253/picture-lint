@@ -11,10 +11,7 @@ import fs from 'node:fs/promises';
  *
  * @returns if "over-size" return `false`.
  */
-export const fileSizeLimit = async (
-	filePath: string,
-	limit: number,
-): Promise<boolean> => {
+export const fileSizeLimit = async (filePath: string, limit: number): Promise<boolean> => {
 	const { size } = await fs.stat(filePath);
 	const isSafeSize = size < limit;
 

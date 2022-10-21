@@ -10,11 +10,6 @@
 		"sourceType": "module",
 		"project": "./tsconfig.json"
 	},
-	"extends": [
-		"eslint:recommended",
-		"plugin:@typescript-eslint/recommended",
-		"plugin:@typescript-eslint/recommended-requiring-type-checking",
-		"prettier"
-	],
+	"extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended", "plugin:@typescript-eslint/recommended-requiring-type-checking", "prettier"],
 	"rules": {}
 }
