@@ -10,7 +10,6 @@ export const strictFormatCheck = (meta: Uint8Array, is: ExtType) => {
 		const correct = [0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a];
 		const testUint = Uint8Array.of(...correct);
 		const result = header.join() === testUint.join();
-		console.log(header, testUint);
 
 		return result;
 	};
@@ -20,8 +19,6 @@ export const strictFormatCheck = (meta: Uint8Array, is: ExtType) => {
 		const correct = [0xff, 0xd8];
 		const testUint = Uint8Array.of(...correct);
 		const result = SOI.join() === testUint.join();
-
-		console.log(SOI, testUint);
 
 		return result;
 	};

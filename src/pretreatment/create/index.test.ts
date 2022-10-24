@@ -8,8 +8,6 @@ describe('[pretreatment: create]', () => {
 		const list = [testFile('jpg.jpg'), testFile('png-8.png'), testFile('png-24.png'), testFile('webp-lossless.webp'), testFile('webp-lossy.webp')];
 		const pretreatment = create(list);
 
-		console.log(pretreatment);
-
 		return pretreatment;
 	});
 });
