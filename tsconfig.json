@@ -1,8 +1,8 @@
 {
 	/* Visit https://aka.ms/tsconfig to read more about this file */
-	"include": ["src/**/*.ts"],
-	"exclude": ["**/*.spec.ts", "**/*.test.ts"],
-	"files": ["./env.d.ts", "jest.config.ts"],
+	"include": ["src/**/*.ts", "./jest.config.ts"],
+	"exclude": ["**/*.spec.ts", "**/*.test.ts", "./*.config.ts"],
+	"files": ["./env.d.ts"],
 	"compilerOptions": {
 		"outDir": "dist",
 		"target": "ESNext",
