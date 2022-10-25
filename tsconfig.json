@@ -1,6 +1,7 @@
 {
 	/* Visit https://aka.ms/tsconfig to read more about this file */
 	"include": ["src/**/*.ts"],
+	"exclude": ["**/*.spec.ts", "**/*.test.ts"],
 	"files": ["./env.d.ts", "jest.config.ts"],
 	"compilerOptions": {
 		"outDir": "dist",
