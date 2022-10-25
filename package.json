@@ -18,7 +18,7 @@
 	},
 	"main": "./dist/index.js",
 	"bin": {
-		"COMMAND_NAME": "./dist/index.js"
+		"picture-lint": "./dist/index.js"
 	},
 	"devDependencies": {
 		"@types/glob": "^8.0.0",
