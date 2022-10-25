@@ -1,10 +1,13 @@
 {
 	"name": "picture-lint",
 	"version": "0.0.0",
-	"description": "(Node.js && TypeScript && ESM) Template",
+	"description": "Lint for picture files",
 	"private": true,
 	"license": "MIT",
-	"keywords": [],
+	"keywords": [
+		"cli",
+		"lint"
+	],
 	"scripts": {
 		"build": "tsc",
 		"watch": "tsc -w",
