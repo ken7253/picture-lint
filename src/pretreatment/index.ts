@@ -9,6 +9,9 @@ export interface PretreatmentItem {
 
 export type Pretreatment = PretreatmentItem[];
 
+/**
+ * pretreatment object is an intermediate Object for efficient linting.
+ */
 export const pretreatment = {
 	create,
 };

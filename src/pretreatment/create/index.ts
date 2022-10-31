@@ -7,7 +7,7 @@ import { Pretreatment, PretreatmentItem } from '..';
  *
  * @param targetImagePathList Full path of the file to be checked.
  *
- * @returns
+ * @returns pretreatment object.
  */
 export const create = async (targetImagePathList: string[]): Promise<Pretreatment> => {
 	const getFileOverview = async (targetImagePath: string): Promise<PretreatmentItem> => {
