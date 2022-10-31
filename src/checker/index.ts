@@ -2,14 +2,12 @@ import { strictFormatCheck } from './strictFormatCheck';
 import { fileNamingPattern } from './fileNamingPattern/';
 import { fileSizeLimit } from './fileSizeLimit/';
 
-import { Pretreatment } from '../pretreatment/';
+import { PretreatmentItem } from '../pretreatment/';
 import { Configuration } from '../config/';
 
-type Checker = {
-	[key: string]: (target: Pretreatment, config: Configuration) => boolean;
-};
+export type Checker = (target: PretreatmentItem, config: Configuration) => boolean;
 
-export const checker: Checker = {
+export const checker: { [key: string]: Checker } = {
 	strictFormatCheck,
 	fileNamingPattern,
 	fileSizeLimit,
