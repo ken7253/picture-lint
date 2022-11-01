@@ -6,6 +6,7 @@ export default async (): Promise<Config> => {
 	return {
 		cacheDirectory: path.join(process.cwd(), '.cache', 'jest'),
 		verbose: true,
+		collectCoverage: true,
 		roots: ['./src'],
 		testMatch: ['**/?(*.)+(spec|test).+(ts|js)'],
 		transform: {
