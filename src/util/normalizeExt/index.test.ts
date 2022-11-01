@@ -10,7 +10,7 @@ describe('[util: normalizeJPGExt]', () => {
 
 		const incorrect = ['png', 'webp', 'gif'];
 		incorrect.forEach((v) => {
-			expect(normalizeJPGExt(v)).toBe(false);
+			expect(normalizeJPGExt(v)).toBe(v);
 		});
 	});
 });
