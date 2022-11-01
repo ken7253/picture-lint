@@ -1,34 +1,28 @@
-type ExtType = 'jpg' | 'png';
+import { normalizeJPGExt } from '../../util/normalizeExt';
+import { type Checker } from '..';
 
-export const strictFormatCheck = (meta: Uint8Array, is: ExtType) => {
-	if (meta.length < 16) {
-		throw new Error('Insufficient data size.\n Array length must be at least 16.');
-	}
+/**
+ * strict format check
+ *
+ * Check the consistency between the extension and the file content.
+ *
+ * @param target pretreatment object
+ *
+ * @param config configuration object
+ *
+ * @returns check result
+ */
+export const strictFormatCheck: Checker = (target, config) => {
+	const { rules } = config;
+	const { parsedPath, header } = target;
+	const normalizedExt = normalizeJPGExt(parsedPath.ext);
+	const PNG_INDICATOR = [0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a];
+	const JPG_INDICATOR = [0xff, 0xd8];
+	const chosenIndicator = normalizedExt === 'jpg' ? JPG_INDICATOR : PNG_INDICATOR;
+	const markerPoint = normalizedExt === 'jpg' ? [0, 2] : [0, 8];
+	const markerArea = header.slice(...markerPoint);
+	const test = chosenIndicator.join() === markerArea.join();
+	const result = rules['strict-format-check'] ? test : false;
 
-	const isPNG = () => {
-		const header = meta.slice(0, 8);
-		const correct = [0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a];
-		const testUint = Uint8Array.of(...correct);
-		const result = header.join() === testUint.join();
-
-		return result;
-	};
-
-	const isJPG = () => {
-		const SOI = meta.slice(0, 2);
-		const correct = [0xff, 0xd8];
-		const testUint = Uint8Array.of(...correct);
-		const result = SOI.join() === testUint.join();
-
-		return result;
-	};
-
-	switch (is) {
-		case 'jpg':
-			return isJPG();
-		case 'png':
-			return isPNG();
-		default:
-			throw new TypeError('Illegal argument.');
-	}
+	return result;
 };
