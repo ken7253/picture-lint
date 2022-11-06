@@ -30,7 +30,6 @@ describe('[checker: strict-format-check]', () => {
 			DUMMY_CONFIG,
 		);
 		expect(result).toBe(true);
-		console.log('jpg:jpg', filePath, header);
 
 		return result;
 	});
@@ -68,7 +67,6 @@ describe('[checker: strict-format-check]', () => {
 			},
 			DUMMY_CONFIG,
 		);
-		console.log('png:png', filePath, header);
 		expect(result).toBe(true);
 
 		return result;
