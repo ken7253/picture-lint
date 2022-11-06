@@ -29,6 +29,7 @@ describe('[checker: strict-format-check]', () => {
 			},
 			DUMMY_CONFIG,
 		);
+		console.log(header);
 		expect(result).toBe(true);
 
 		return result;
@@ -48,7 +49,6 @@ describe('[checker: strict-format-check]', () => {
 			},
 			DUMMY_CONFIG,
 		);
-
 		expect(result).toBe(false);
 
 		return result;
@@ -68,7 +68,7 @@ describe('[checker: strict-format-check]', () => {
 			},
 			DUMMY_CONFIG,
 		);
-
+		console.log(header);
 		expect(result).toBe(true);
 
 		return result;
