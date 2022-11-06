@@ -17,22 +17,22 @@ const testDataPath = path.join(process.cwd(), 'src', '__test__', 'format-tester'
 describe('[checker: strict-format-check]', () => {
 	test('jpg:jpg', async () => {
 		const filePath = path.join(testDataPath, 'jpg.jpg');
-		const file = await fs.readFile(filePath, { encoding: 'utf-8' });
-		console.log(file);
-		// const uint = new Uint8Array(file);
-		// const header = uint.slice(0, 16);
-		// const parsedPath = path.parse(filePath);
-		// const result = strictFormatCheck(
-		// 	{
-		// 		header,
-		// 		parsedPath,
-		// 		size: 100,
-		// 	},
-		// 	DUMMY_CONFIG,
-		// );
-		// expect(result).toBe(true);
+		const file = await fs.readFile(filePath);
+		const uint = new Uint8Array(file);
+		const header = uint.slice(0, 16);
+		const parsedPath = path.parse(filePath);
+		const result = strictFormatCheck(
+			{
+				header,
+				parsedPath,
+				size: 100,
+			},
+			DUMMY_CONFIG,
+		);
+		expect(result).toBe(true);
+		console.log('jpg:jpg', filePath, header);
 
-		// return result;
+		return result;
 	});
 
 	test('jpg:png', async () => {
