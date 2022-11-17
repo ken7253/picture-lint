@@ -1,19 +1,20 @@
-import fs from 'node:fs/promises';
+import { type PretreatmentItem } from '../../pretreatment';
+import { type Configuration } from '../../config';
 
 /**
  * Rules to check if the size of the image does not exceed the maximum size.
  *
- * @param filePath Path of the image to be checked.
+ * @param target pretreatment object
  *
- * ex) `root/foo/check-image.jpg`
+ * @param config configuration object
  *
- * @param limit Maximum size [byte]
- *
- * @returns if "over-size" return `false`.
+ * @returns check result
  */
-export const fileSizeLimit = async (filePath: string, limit: number): Promise<boolean> => {
-	const { size } = await fs.stat(filePath);
-	const isSafeSize = size < limit;
+export const fileSizeLimit = (target: PretreatmentItem, config: Required<Configuration>): boolean => {
+	const { size } = target;
+	const { rules } = config;
+	const limit = typeof rules['file-size-limit'] === 'number' ? rules['file-size-limit'] : Infinity;
+	const result = size < limit;
 
-	return isSafeSize;
+	return result;
 };

@@ -1,33 +1,56 @@
-import fs from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
 import { fileSizeLimit } from './';
+import { type PretreatmentItem } from '../../pretreatment';
+import { type Configuration } from '../../config';
 import { describe } from '@jest/globals';
 
-const referenceImage = path.join(process.cwd(), 'src', '__test__', 'format-tester', 'jpg.jpg');
+const DUMMY_CONFIG = {
+	include: ['.'],
+	rules: {
+		'file-naming-pattern': false,
+		'file-size-limit': 5000,
+		'strict-format-check': false,
+	},
+} as Required<Configuration>;
+
+const DUMMY_TARGET: PretreatmentItem = {
+	header: new Uint8Array([0, 0, 0, 0, 0, 0, 0, 0]),
+	parsedPath: path.parse(process.cwd()),
+	size: 5000,
+};
 
 describe('[checker: file-size-limit]', () => {
-	test('over size', async (): Promise<boolean> => {
-		const { size } = await fs.stat(referenceImage);
-		const result = await fileSizeLimit(referenceImage, size - 1);
+	test('over size', () => {
+		const result = fileSizeLimit(
+			{
+				...DUMMY_TARGET,
+				size: 5001,
+			},
+			DUMMY_CONFIG,
+		);
 		expect(result).toBe(false);
-
-		return result;
 	});
 
-	test('safe size', async (): Promise<boolean> => {
-		const { size } = await fs.stat(referenceImage);
-		const result = await fileSizeLimit(referenceImage, size + 1);
+	test('safe size', () => {
+		const result = fileSizeLimit(
+			{
+				...DUMMY_TARGET,
+				size: 4999,
+			},
+			DUMMY_CONFIG,
+		);
 		expect(result).toBe(true);
-
-		return result;
 	});
 
-	test('equal size', async (): Promise<boolean> => {
-		const { size } = await fs.stat(referenceImage);
-		const result = await fileSizeLimit(referenceImage, size);
+	test('equal size', () => {
+		const result = fileSizeLimit(
+			{
+				...DUMMY_TARGET,
+				size: 5000,
+			},
+			DUMMY_CONFIG,
+		);
 		expect(result).toBe(false);
-
-		return result;
 	});
 });

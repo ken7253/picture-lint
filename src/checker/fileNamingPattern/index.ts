@@ -1,26 +1,21 @@
-import path from 'node:path';
+import { type PretreatmentItem } from '../../pretreatment';
+import { type Configuration } from '../../config';
 
 /**
  * Check image file naming conventions using RegExp
  *
- * @param filePath
+ * @param target pretreatment object
  *
- * Target file path.
+ * @param config configuration object
  *
- * ex) `root/foo/check-image.jpg`
- *
- * @param pattern
- *
- * check pattern.
- *
- * Enabled flags `'u'`
- *
- * @returns if failed test return `false`
+ * @returns check result
  */
-export const fileNamingPattern = (filePath: string, pattern: string) => {
-	const testPattern = new RegExp(pattern, 'u');
-	const { name } = path.parse(filePath);
-	const result = testPattern.test(name);
+export const fileNamingPattern = (target: PretreatmentItem, config: Required<Configuration>) => {
+	const { parsedPath } = target;
+	const { rules } = config;
+	const rawPattern = typeof rules['file-naming-pattern'] === 'string' ? rules['file-naming-pattern'] : '.*';
+	const allowPattern = new RegExp(rawPattern);
+	const result = allowPattern.test(parsedPath.name);
 
 	return result;
 };
