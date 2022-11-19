@@ -1,5 +1,4 @@
-import { type PretreatmentItem } from '../../pretreatment';
-import { type Configuration } from '../../config';
+import { type Checker } from '..';
 
 /**
  * Check image file naming conventions using RegExp
@@ -10,7 +9,7 @@ import { type Configuration } from '../../config';
  *
  * @returns check result
  */
-export const fileNamingPattern = (target: PretreatmentItem, config: Required<Configuration>) => {
+export const fileNamingPattern: Checker = (target, config) => {
 	const { parsedPath } = target;
 	const { rules } = config;
 	const rawPattern = typeof rules['file-naming-pattern'] === 'string' ? rules['file-naming-pattern'] : '.*';

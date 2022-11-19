@@ -1,5 +1,4 @@
-import { type PretreatmentItem } from '../../pretreatment';
-import { type Configuration } from '../../config';
+import { type Checker } from '..';
 
 /**
  * Rules to check if the size of the image does not exceed the maximum size.
@@ -10,7 +9,7 @@ import { type Configuration } from '../../config';
  *
  * @returns check result
  */
-export const fileSizeLimit = (target: PretreatmentItem, config: Required<Configuration>): boolean => {
+export const fileSizeLimit: Checker = (target, config) => {
 	const { size } = target;
 	const { rules } = config;
 	const limit = typeof rules['file-size-limit'] === 'number' ? rules['file-size-limit'] : Infinity;
