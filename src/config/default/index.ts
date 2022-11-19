@@ -10,7 +10,7 @@ export interface Configuration {
 }
 
 export const defaultConfig: Required<Configuration> = {
-	include: ['.'],
+	include: ['./**/*'],
 	rules: {
 		'strict-format-check': false,
 		'file-naming-pattern': false,
