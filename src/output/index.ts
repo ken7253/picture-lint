@@ -1,7 +1,5 @@
-import { resultItem, type LintResult } from './result/';
-
-export type { LintResult };
+import { summary } from './summary';
 
 export const output = {
-	resultItem,
+	summary,
 };
